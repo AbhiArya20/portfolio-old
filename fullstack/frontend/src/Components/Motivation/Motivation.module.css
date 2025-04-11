@@ -1,0 +1,97 @@
+.motivation {
+    display: flex;
+    min-height: 80vh;
+    min-height: 80dvh;
+    width: 100%;
+    align-items: center;
+    position: relative;
+    margin: 1rem 0;
+}
+.motivationWrapper {
+    width: 100%;
+    min-height: 80vh;
+    min-height: 80dvh;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    position: relative;
+}
+.motivationWrapper > * {
+    position: relative;
+    z-index: 2;
+    font-weight: bold;
+    font-size: 3em;
+    color: var(--color-text);
+}
+.motivationWrapper > p {
+    font-weight: bold;
+    font-size: 2em;
+    color: var(--color-active);
+}
+.motivationWrapper > p > span {
+    position: relative;
+}
+.motivationWrapper > p > span::before {
+    content: "Man";
+    color: rgba(209, 52, 52, 0.219);
+    position: absolute;
+    z-index: -1;
+    font-size: 2.5em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.designWrapper {
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60rem;
+    height: 39rem;
+    border-radius: 1rem;
+    flex-shrink: unset;
+    flex-wrap: wrap;
+}
+
+.shapes,
+.glass {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.glass {
+    z-index: 1;
+    display: grid;
+    place-items: center;
+}
+
+.shape {
+    position: absolute;
+    width: 350px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    filter: blur(15px);
+    translate: 10% 10%;
+}
+.shapeYellow {
+    background-color: rgba(240, 216, 139, 0.8);
+}
+.shapeSalmon {
+    background-color: rgba(241, 163, 163, 0.8);
+}
+
+@media screen and (max-width: 768px) {
+    .motivation {
+        flex-direction: column-reverse;
+    }
+    .designWrapper {
+        width: 100%;
+        margin: 0 1rem;
+    }
+    .shape{
+        width: 200px;
+    }
+}
