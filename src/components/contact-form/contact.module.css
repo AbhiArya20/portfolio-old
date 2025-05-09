@@ -1,0 +1,378 @@
+.cardWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 1.5rem 0;
+}
+
+
+.motionCard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem
+}
+
+
+.card {
+  width: 300px;
+  height: 200px;
+  background: var(--color-contact-background);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  overflow: hidden;
+  position: relative;
+  color: var(--color-text);
+  transition: none;
+}
+
+.card:hover {
+  color: white;
+}
+
+.card::before {
+  content: '';
+  border-radius: 1rem;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.card:nth-child(1)::before {
+  background: var(--color-active);
+  opacity: 0;
+}
+
+.card:nth-child(1):hover::before {
+  opacity: 1;
+  animation: opacityChange;
+}
+
+.card:nth-child(2)::before {
+  background: var(--color-active);
+  width: 0;
+}
+
+.card:nth-child(2):hover::before {
+  width: 100%;
+}
+
+.card:nth-child(3)::before {
+  background: var(--color-active);
+  bottom: -50%;
+  left: -50%;
+  opacity: 0;
+  transform-origin: left bottom;
+  transform: scale(0);
+  border-radius: 50%;
+}
+
+.card:nth-child(3):hover::before {
+  opacity: 1;
+  height: 200%;
+  width: 200%;
+  transform: scale(1);
+}
+
+.card:nth-child(4)::before {
+  background: var(--color-active);
+  opacity: 0;
+  height: 0;
+  width: 0;
+  transform-origin: center;
+  transform: translate(50%, -50%);
+  transform: scale(0);
+  border-radius: 50%;
+}
+
+.card:nth-child(4):hover::before {
+  opacity: 1;
+  height: 190%;
+  width: 190%;
+  transform: scale(1);
+}
+
+.card:nth-child(5)::before {
+  background: var(--color-active);
+  opacity: 1;
+  height: 0;
+  width: 0;
+  top: 20%;
+  left: 50%;
+  translate: -50% -50%;
+  transform: scale(0);
+  border-radius: 50%;
+}
+
+.card:nth-child(5):hover::before {
+  opacity: 1;
+  height: 200%;
+  width: 200%;
+  transform: scale(1);
+}
+
+.card:nth-child(6)::before {
+  background: var(--color-active);
+  top: 20%;
+  left: 50%;
+  translate: -50% -50%;
+  transform: scale(0);
+  border-radius: 50%;
+}
+
+.card:nth-child(6):hover::before {
+  height: 200%;
+  width: 200%;
+  transform: scale(01);
+}
+
+.card:nth-child(6):hover span>* {
+  animation: increaseSize 0.5s linear both;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes increaseSize {
+
+  0%,
+  100% {
+    font-size: 3em;
+  }
+
+  50% {
+    font-size: 10em;
+  }
+}
+
+.card:nth-child(7)::after {
+  content: 'Github';
+  border-radius: 1rem;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+  align-self: center;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  border-radius: 50%;
+  font-size: 3rem;
+  opacity: 0;
+  transition-duration: 0.75s;
+  transition-timing-function: linear;
+}
+
+.card:nth-child(7):hover::after {
+  height: 200%;
+  width: 200%;
+  font-size: 50em;
+  opacity: 1;
+}
+
+.card:nth-child(7)::before {
+  background: var(--color-active);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  transform: scale(0);
+
+  border-radius: 50%;
+}
+
+.card:nth-child(7):hover::before {
+  height: 200%;
+  width: 200%;
+  transform: scale(01);
+}
+
+.card:nth-child(8)::before {
+  background: var(--color-active);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  transform: scale(0);
+
+  border-radius: 50%;
+}
+
+.card:nth-child(8):hover::before {
+  height: 200%;
+  width: 200%;
+  transform: scale(01);
+}
+
+.card>a {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.card>a>span>* {
+  color: var(--color-text);
+  transition-duration: 0.1s;
+  font-size: 3em;
+}
+
+.card:hover>a>span>* {
+  color: white;
+}
+
+.card>a>h1 {
+  transition: none;
+  font-size: 2em;
+}
+
+.card>a>p {
+  transition: none;
+}
+
+.lottie {
+  width: 100%;
+  background: green;
+}
+
+
+/* ContactForm.module.css */
+.container {
+  width: 100%;
+  border-radius: 1rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0.5rem;
+  }
+}
+
+.boxArea {
+  width: 100%;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.6));
+  padding: 0 1rem;
+}
+
+.formArea {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 2rem;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .formArea {
+    flex-direction: column;
+    padding: 0;
+  }
+}
+
+.messageArea {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem;
+  flex: 1;
+}
+
+.formGroup {
+  padding: 1rem;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .formGroup {
+    height: max-content;
+  }
+}
+
+.input,
+.textArea {
+  width: 100%;
+  margin-top: 1rem;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  outline: none;
+  font-size: 1rem;
+  background-color: var(--color-contact-background);
+  color: var(--color-text);
+}
+
+.input {
+  height: 3rem;
+  padding: 5px 8px;
+}
+
+.input:focus {
+  border: 2px solid green;
+}
+
+.textArea {
+  padding: 10px;
+  resize: vertical;
+  border-radius: 10px;
+  min-height: 5rem;
+}
+
+.textArea:focus {
+  border: 2px solid green;
+}
+
+.button,
+.dismissButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 1rem;
+  align-self: flex-start;
+  color: white;
+}
+
+.button {
+  background: var(--color-active);
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--color-active-hover);
+}
+
+.dismissButton {
+  background: var(--color-primary-logo);
+  cursor: not-allowed;
+}
+
+.contact {
+  font-size: 2.5em;
+  align-self: center;
+}
+
+.valid {
+  border: 2px solid green !important;
+}
+
+.invalid {
+  border: 2px solid red !important;
+}
+
+
+@media screen and (max-width: 300px) {
+  .card {
+    width: 100%;
+  }
+}
