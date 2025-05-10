@@ -1,5 +1,5 @@
 import { useEffect, type JSX } from "react";
-import styles from "./Motivation.module.css";
+import styles from "@/components/motivation/motivation.module.css";
 import { Tilt } from "react-tilt";
 import { Player } from "@lottiefiles/react-lottie-player";
 

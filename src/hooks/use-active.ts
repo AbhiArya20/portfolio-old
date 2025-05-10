@@ -13,21 +13,15 @@ const getActive = (hash: string) => {
   }
 };
 
-
 export default function useActive() {
   const [active, setActive] = useState(getActive(window.location.hash));
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      setActive(getActive(window.location.hash));
-    };
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+  const handleHashChange = () => {
+    if (!window?.location?.hash) return;
+    setActive(getActive(window.location.hash));
+  };
 
   useEffect(() => {
     const sections = ['home', 'project', 'contact'];
-
     const observers: IntersectionObserver[] = [];
 
     sections.forEach((id) => {
@@ -39,10 +33,11 @@ export default function useActive() {
             const newHash = `#${id}`;
             if (window.location.hash !== newHash) {
               history.replaceState(null, '', newHash);
+              handleHashChange();
             }
           }
         },
-        { threshold: 1 }
+        { threshold: .6 }
       );
 
       observer.observe(el);
@@ -51,7 +46,7 @@ export default function useActive() {
 
     return () => {
       observers.forEach((observer) => observer.disconnect());
-    };
+    }
   }, []);
 
 

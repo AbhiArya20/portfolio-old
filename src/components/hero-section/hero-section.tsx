@@ -5,7 +5,7 @@ import { TechIconsContext } from '@/context/tech-icon-context';
 import TechIcon from '@components/hero-section/tech-icon';
 import ParticlesContainer from '@components/hero-section/particle-container';
 import { icons } from '@/data/tech-icons-data';
-import TextSegment from './text-section';
+import TextSegment from '@/components/hero-section/text-section';
 
 function HeroSection() {
   const { positions } = useContext(TechIconsContext);

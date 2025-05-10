@@ -1,5 +1,5 @@
 import { FaGithub, FaArrowRight } from "react-icons/fa6";
-import styles from "./project-section.module.css";
+import styles from "@components/projects-section/project-section.module.css";
 import type { ProjectData } from "@data/project-data";
 
 
