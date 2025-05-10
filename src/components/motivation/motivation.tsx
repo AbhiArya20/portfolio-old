@@ -1,77 +1,85 @@
-import  { useEffect } from "react";
+import { useEffect, type JSX } from "react";
 import styles from "./Motivation.module.css";
 import { Tilt } from "react-tilt";
 import { Player } from "@lottiefiles/react-lottie-player";
 
 const defaultOptions = {
-    reverse: false, 
+    reverse: false,
     max: 45,
-    perspective: 1000, 
-    scale: 1.1, 
-    speed: 1000, 
-    transition: true, 
+    perspective: 1000,
+    scale: 1.1,
+    speed: 1000,
+    transition: true,
     axis: null,
-    reset: true, 
-    easing: "cubic-bezier(.03,.98,.52,.99)", 
+    reset: true,
+    easing: "cubic-bezier(.03,.98,.52,.99)",
 };
 
-export default function Motivation() {
-    let shapes;
-    const min = 1;
-    const max = 1.5;
-    const random = (min, max) => Math.random() * (max - min) + min;
+function random(min: number, max: number): number {
+    return Math.random() * (max - min) + min;
+}
 
-    class Shape {
-        constructor(el) {
-            this.el = el;
-            this.size = el.offsetWidth;
-            this.x = random(0, window.innerWidth - this.size);
-            this.y = random(0, window.innerHeight - this.size);
-            this.vx = random(min, max);
-            this.vy = random(min, max);
+class Shape {
+    el: HTMLElement;
+    size: number;
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+
+    constructor(el: HTMLElement) {
+        this.el = el;
+        this.size = el.offsetWidth;
+        this.x = random(0, window.innerWidth - this.size);
+        this.y = random(0, window.innerHeight - this.size);
+        this.vx = random(1, 1.5);
+        this.vy = random(1, 1.5);
+    }
+
+    boundary(): void {
+        if (this.x >= window.innerWidth - this.size) {
+            this.vx *= -1;
+            this.x = window.innerWidth - this.size;
         }
-        boundary() {
-            if (this.x >= window.innerWidth - this.size) {
-                this.vx *= -1;
-                this.x = window.innerWidth - this.size;
-            }
-            if (this.y >= window.innerHeight - this.size) {
-                this.vy *= -1;
-                this.y = window.innerHeight - this.size;
-            }
-            if (this.x <= 0) {
-                this.vx *= -1;
-                this.x = 0;
-            }
-            if (this.y <= 0) {
-                this.vy *= -1;
-                this.y = 0;
-            }
+        if (this.y >= window.innerHeight - this.size) {
+            this.vy *= -1;
+            this.y = window.innerHeight - this.size;
         }
-        animate() {
-            this.x += this.vx;
-            this.y += this.vy;
-            this.el.style.transform = `translate(${this.x}px,${this.y}px)`;
-            this.boundary();
+        if (this.x <= 0) {
+            this.vx *= -1;
+            this.x = 0;
+        }
+        if (this.y <= 0) {
+            this.vy *= -1;
+            this.y = 0;
         }
     }
 
-    function update() {
+    animate(): void {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.el.style.transform = `translate(${this.x}px, ${this.y}px)`;
+        this.boundary();
+    }
+}
+
+export default function Motivation(): JSX.Element {
+    let shapes: Shape[] = [];
+
+    const update = (): void => {
         shapes.forEach((shape) => shape.animate());
         requestAnimationFrame(update);
-    }
+    };
 
-    function init() {
-        const elements = document.querySelectorAll(`.${styles.shape}`);
-        elements.forEach((el) => {
-            new Shape({ el });
-        });
+    const init = (): void => {
+        const elements = document.querySelectorAll<HTMLElement>(`.${styles.shape}`);
         shapes = Array.from(elements, (el) => new Shape(el));
         update();
-    }
+    };
 
     useEffect(() => {
         window.addEventListener("load", init, false);
+        return () => window.removeEventListener("load", init);
     }, []);
 
     return (
@@ -87,14 +95,12 @@ export default function Motivation() {
             </div>
             <div className={styles.designWrapper}>
                 <Tilt options={defaultOptions}>
-
                     <Player
                         autoplay
                         loop
                         src="https://lottie.host/f91359da-a793-450f-b353-e04ddc138689/1AOxL0KNpa.json"
                         style={{ width: 'min(500px,100%)', background: 'transparent' }}
-                    >
-                    </Player>
+                    />
                 </Tilt>
             </div>
             <div className={styles.glass}></div>

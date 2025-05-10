@@ -1,16 +1,15 @@
 .loadingWrapper {
-    background-color: var(--color-background);
+    background-color: var(--background);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    height: 100dvh;
     width: 100vw;
-    animation: fadeOut 0.5s linear 2.5s;
-    position: relative;
+    animation: fade-out 0.5s linear 2.5s;
 }
 
-@keyframes fadeOut {
+@keyframes fade-out {
     to {
         opacity: 0;
         background-color: transparent;
@@ -26,7 +25,6 @@
     font-size: 1.5em;
 }
 
-/* General Styling for Bike Parts */
 .bikeFrame,
 .bikeFrontFork,
 .bikeHandlebars,
@@ -36,151 +34,179 @@
 .bikeSpokes,
 .bikeSpokesSpin,
 .bikeTire {
-    animation: bikeFrameAnim 3s ease-in-out infinite;
-    stroke: var(--color-active);
-    transition: none;
+    animation: bike-frame-animation 3s ease-in-out infinite;
+    stroke: var(--primary);
 }
 
 .bikeSpokes,
 .bikeTire {
-    stroke: var(--color-text);
+    stroke: var(--text);
 }
 
 .bikeFrontFork {
-    animation-name: frontForkAnim;
-}
-.bikeHandlebars {
-    animation-name: handlebarsAnim;
-}
-.bikePedals {
-    animation-name: pedalsAnim;
-}
-.bikePedalsSpin {
-    animation-name: pedalsSpinAnim;
-}
-.bikeSeat {
-    animation-name: seatAnim;
-}
-.bikeSpokes {
-    animation-name: spokesAnim;
-}
-.bikeSpokesSpin {
-    animation-name: spokesSpinAnim;
-}
-.bikeTire {
-    animation-name: tireAnim;
+    animation-name: front-fork-animation;
 }
 
-/* Animations */
-@keyframes bikeFrameAnim {
+.bikeHandlebars {
+    animation-name: handle-bars-animation;
+}
+
+.bikePedals {
+    animation-name: pedals-animation;
+}
+
+.bikePedalsSpin {
+    animation-name: pedals-spin-animation;
+}
+
+.bikeSeat {
+    animation-name: seat-animation;
+}
+
+.bikeSpokes {
+    animation-name: spokes-animation;
+}
+
+.bikeSpokesSpin {
+    animation-name: spokes-spin-animation;
+}
+
+.bikeTire {
+    animation-name: tire-animation;
+}
+
+@keyframes bike-frame-animation {
     from {
         stroke-dashoffset: 79;
     }
-    33%, 67% {
+
+    33%,
+    67% {
         stroke-dashoffset: 0;
     }
+
     to {
         stroke-dashoffset: -79;
     }
 }
 
-@keyframes frontForkAnim {
+@keyframes front-fork-animation {
     from {
         stroke-dashoffset: 19;
     }
-    33%, 67% {
+
+    33%,
+    67% {
         stroke-dashoffset: 0;
     }
+
     to {
         stroke-dashoffset: -19;
     }
 }
 
-@keyframes handlebarsAnim {
+@keyframes handle-bars-animation {
     from {
         stroke-dashoffset: 10;
     }
-    33%, 67% {
+
+    33%,
+    67% {
         stroke-dashoffset: 0;
     }
+
     to {
         stroke-dashoffset: -10;
     }
 }
 
-@keyframes pedalsAnim {
+@keyframes pedals-animation {
     from {
         animation-timing-function: ease-in;
         stroke-dashoffset: -25.133;
     }
-    33%, 67% {
+
+    33%,
+    67% {
         animation-timing-function: ease-out;
         stroke-dashoffset: -21.991;
     }
+
     to {
         stroke-dashoffset: -25.133;
     }
 }
 
-@keyframes pedalsSpinAnim {
+@keyframes pedals-spin-animation {
     from {
         transform: rotate(0.1875turn);
     }
+
     to {
         transform: rotate(3.1875turn);
     }
 }
 
-@keyframes seatAnim {
+@keyframes seat-animation {
     from {
         stroke-dashoffset: 5;
     }
-    33%, 67% {
+
+    33%,
+    67% {
         stroke-dashoffset: 0;
     }
+
     to {
         stroke-dashoffset: -5;
     }
 }
 
-@keyframes spokesAnim {
+@keyframes spokes-animation {
     from {
         animation-timing-function: ease-in;
         stroke-dashoffset: -31.416;
     }
-    33%, 67% {
+
+    33%,
+    67% {
         animation-timing-function: ease-out;
         stroke-dashoffset: -23.562;
     }
+
     to {
         stroke-dashoffset: -31.416;
     }
 }
 
-@keyframes spokesSpinAnim {
+@keyframes spokes-spin-animation {
     from {
         transform: rotate(0);
     }
+
     to {
         transform: rotate(3turn);
     }
 }
 
-@keyframes tireAnim {
+@keyframes tire-animation {
     from {
         animation-timing-function: ease-in;
         stroke-dashoffset: 56.549;
         transform: rotate(0);
     }
+
     33% {
         stroke-dashoffset: 0;
         transform: rotate(0.33turn);
     }
+
     67% {
         animation-timing-function: ease-out;
         stroke-dashoffset: 0;
         transform: rotate(0.67turn);
     }
+
     to {
         stroke-dashoffset: -56.549;
         transform: rotate(1turn);

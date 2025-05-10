@@ -5,8 +5,8 @@
   gap: 2rem;
   flex-wrap: wrap;
   padding: 1.5rem 0;
+  background: var(--background);
 }
-
 
 .motionCard {
   display: flex;
@@ -15,17 +15,19 @@
   gap: 2rem
 }
 
-
 .card {
   width: 300px;
   height: 200px;
-  background: var(--color-contact-background);
+  background: var(--card-background);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
   overflow: hidden;
   position: relative;
-  color: var(--color-text);
-  transition: none;
+  color: var(--text);
+}
+
+.card h1,p{
+  color: var(--text);
 }
 
 .card:hover {
@@ -43,17 +45,27 @@
 }
 
 .card:nth-child(1)::before {
-  background: var(--color-active);
-  opacity: 0;
+  background: var(--primary);
+  top: 20%;
+  left: 50%;
+  translate: -50% -50%;
+  transform: scale(0);
+  border-radius: 50%;
 }
 
 .card:nth-child(1):hover::before {
-  opacity: 1;
-  animation: opacityChange;
+  height: 200%;
+  width: 200%;
+  transform: scale(01);
+}
+
+.card:nth-child(1):hover span>* {
+  animation: increaseSize 0.5s linear both;
+  animation-direction: alternate-reverse;
 }
 
 .card:nth-child(2)::before {
-  background: var(--color-active);
+  background: var(--primary);
   width: 0;
 }
 
@@ -62,7 +74,7 @@
 }
 
 .card:nth-child(3)::before {
-  background: var(--color-active);
+  background: var(--primary);
   bottom: -50%;
   left: -50%;
   opacity: 0;
@@ -79,7 +91,7 @@
 }
 
 .card:nth-child(4)::before {
-  background: var(--color-active);
+  background: var(--primary);
   opacity: 0;
   height: 0;
   width: 0;
@@ -97,7 +109,7 @@
 }
 
 .card:nth-child(5)::before {
-  background: var(--color-active);
+  background: var(--primary);
   opacity: 1;
   height: 0;
   width: 0;
@@ -115,26 +127,6 @@
   transform: scale(1);
 }
 
-.card:nth-child(6)::before {
-  background: var(--color-active);
-  top: 20%;
-  left: 50%;
-  translate: -50% -50%;
-  transform: scale(0);
-  border-radius: 50%;
-}
-
-.card:nth-child(6):hover::before {
-  height: 200%;
-  width: 200%;
-  transform: scale(01);
-}
-
-.card:nth-child(6):hover span>* {
-  animation: increaseSize 0.5s linear both;
-  animation-direction: alternate-reverse;
-}
-
 @keyframes increaseSize {
 
   0%,
@@ -145,64 +137,6 @@
   50% {
     font-size: 10em;
   }
-}
-
-.card:nth-child(7)::after {
-  content: 'Github';
-  border-radius: 1rem;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  cursor: pointer;
-  text-align: center;
-  align-self: center;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-  border-radius: 50%;
-  font-size: 3rem;
-  opacity: 0;
-  transition-duration: 0.75s;
-  transition-timing-function: linear;
-}
-
-.card:nth-child(7):hover::after {
-  height: 200%;
-  width: 200%;
-  font-size: 50em;
-  opacity: 1;
-}
-
-.card:nth-child(7)::before {
-  background: var(--color-active);
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-  transform: scale(0);
-
-  border-radius: 50%;
-}
-
-.card:nth-child(7):hover::before {
-  height: 200%;
-  width: 200%;
-  transform: scale(01);
-}
-
-.card:nth-child(8)::before {
-  background: var(--color-active);
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-  transform: scale(0);
-
-  border-radius: 50%;
-}
-
-.card:nth-child(8):hover::before {
-  height: 200%;
-  width: 200%;
-  transform: scale(01);
 }
 
 .card>a {
@@ -217,7 +151,7 @@
 }
 
 .card>a>span>* {
-  color: var(--color-text);
+  color: var(--text);
   transition-duration: 0.1s;
   font-size: 3em;
 }
@@ -226,25 +160,15 @@
   color: white;
 }
 
-.card>a>h1 {
-  transition: none;
-  font-size: 2em;
-}
-
-.card>a>p {
-  transition: none;
-}
 
 .lottie {
   width: 100%;
   background: green;
 }
 
-
-/* ContactForm.module.css */
 .container {
-  width: 100%;
   border-radius: 1rem;
+  max-width: 1400px;
 }
 
 @media (max-width: 768px) {
@@ -254,9 +178,8 @@
 }
 
 .boxArea {
-  width: 100%;
-  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.6));
   padding: 0 1rem;
+  margin: auto;
 }
 
 .formArea {
@@ -282,6 +205,11 @@
   align-items: center;
   padding: 1rem;
   flex: 1;
+  color: white;
+}
+
+.messageArea h3{
+   color: #272727;
 }
 
 .formGroup {
@@ -308,8 +236,8 @@
   border-radius: 5px;
   outline: none;
   font-size: 1rem;
-  background-color: var(--color-contact-background);
-  color: var(--color-text);
+  background-color: var(--card-background);
+  color: var(--text);
 }
 
 .input {
@@ -341,25 +269,28 @@
   margin-top: 1rem;
   align-self: flex-start;
   color: white;
+  border: none;
+  outline: none;
 }
 
 .button {
-  background: var(--color-active);
+  background: var(--primary);
   cursor: pointer;
+  transition: opacity .3s;
 }
 
 .button:hover {
-  background: var(--color-active-hover);
+  opacity: 90%;
 }
 
 .dismissButton {
-  background: var(--color-primary-logo);
   cursor: not-allowed;
 }
 
 .contact {
   font-size: 2.5em;
   align-self: center;
+  color: white;
 }
 
 .valid {

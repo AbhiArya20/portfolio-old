@@ -1,14 +1,13 @@
-import React from 'react';
-import styles from './Footer.module.css';
+import styles from '@/components/footer/footer.module.css';
+import type { MouseEvent as ReactMouseEvent } from 'react';
 
 export default function Footer() {
-  const handleToolTip = (e) => {
+  const handleToolTip = (e: ReactMouseEvent<HTMLElement>) => {
     const toolTipArray = document.getElementsByClassName(styles.tooltip);
     const footerArray = document.getElementsByClassName(styles.footer);
     if (toolTipArray.length && footerArray.length) {
-      const toolTip = toolTipArray[0];
-      const footer = footerArray[0];
-      const xPos = e.pageX;
+      const toolTip = toolTipArray[0] as HTMLElement;
+      const xPos = e.pageX - 8;
       const yPos = -40;
       toolTip.style.left = xPos + 'px';
       toolTip.style.top = yPos + 'px';

@@ -1,14 +1,20 @@
 import { motion } from 'motion/react';
-
-import  { useEffect, useState } from 'react';
-import styles from '@/components/first-section/first-section.module.css';
+import { useEffect, useState } from 'react';
+import styles from '@/components/hero-section/hero-section.module.css';
 
 const getRandomDirection = () => {
   const directions = ['-30px', '30px', '-15px', '15px'];
   return directions[Math.floor(Math.random() * directions.length)];
 };
 
-const TechIcon = ({ Component, textColor, color, top = 50, left = 50 }) => {
+type TechIconProps = {
+  Component: React.FC<React.SVGProps<SVGSVGElement>>;
+  color: string;
+  top?: number;
+  left?: number;
+};
+
+const TechIcon = ({ Component, color, top = 50, left = 50 }: TechIconProps) => {
   const [shakeX, setShakeX] = useState(getRandomDirection());
   const [shakeY, setShakeY] = useState(getRandomDirection());
   const [scale, setScale] = useState(1);
@@ -29,14 +35,14 @@ const TechIcon = ({ Component, textColor, color, top = 50, left = 50 }) => {
       animate={{ x: shakeX, y: shakeY, scale: scale }}
       transition={{ duration: 2, ease: 'easeInOut' }}
       className={`${styles.techIcon} ${styles.iconDropShadow}`}
-      // className={`icons-drop-shadow opacity-75 bg-gray-200`}
+
       style={{
         '--color': color,
         left: `${top}%`,
         top: `${left}%`
-      }}
+      } as React.CSSProperties}
     >
-      <Component className={`${textColor}`} style={{ color: color }} />
+      <Component style={{ color: color }} />
     </motion.div>
   );
 };

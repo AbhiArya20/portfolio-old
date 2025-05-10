@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 
 export default function ContactCards() {
   return (
-    <div className={styles.cardWrapper}>
+    <div className={styles.cardWrapper} id='contact'>
       <motion.div
         initial='hidden'
         animate='visible'
@@ -16,6 +16,7 @@ export default function ContactCards() {
       >
         {contacts.map(({ href, Icon, name, userName }) => (
           <motion.div
+          key={name}
             className={styles.card}
             whileHover={{ scale: 1.05, boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}
             whileTap={{ scale: 0.95 }}

@@ -1,0 +1,18 @@
+.main {
+    position: relative;
+    z-index: 110;
+    background-color: var(--background);
+    padding: 2rem 5rem;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width:768px) {
+    .main {
+        padding: 0 1rem;
+    }
+}

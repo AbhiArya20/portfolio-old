@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 
-const delay = async (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
 export default function useDarkMode() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
     const localStorageValue = localStorage.getItem('isDarkTheme');
@@ -18,15 +16,15 @@ export default function useDarkMode() {
   }, []);
 
   const toggleDarkMode = async () => {
-    document.body.classList.add('body-opacity-0');
-    await delay(1000);
     document.body.classList.toggle('dark-mode');
     setIsDarkMode((prev) => !prev);
-    await delay(1000);
-    document.body.classList.remove('body-opacity-0');
-
     localStorage.setItem('isDarkTheme', isDarkMode ? "false" : "true");
   };
 
-  return [isDarkMode, toggleDarkMode];
+  return [isDarkMode, toggleDarkMode] as const;
 }
+
+export type DarkModeHook = {
+  isDarkMode: ReturnType<typeof useDarkMode>[0];
+  toggleDarkMode: ReturnType<typeof useDarkMode>[1];
+};

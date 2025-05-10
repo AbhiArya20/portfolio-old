@@ -29,19 +29,17 @@ export default function TechIconsProvider({ children }: { children: React.ReactN
   useEffect(() => {
     const randomPositions: TechIconPosition[] = [];
     const maxAttempts = 100;
-    const occupied: TechIconPosition[] = [];
 
     icons.forEach(() => {
       let position = generatePosition();
       let attempts = 0;
 
-      while (occupied.some((pos) => isOverlapping(pos, position)) && attempts < maxAttempts) {
+      while (randomPositions.some((pos) => isOverlapping(pos, position)) && attempts < maxAttempts) {
         position = generatePosition();
         attempts++;
       }
 
       randomPositions.push(position);
-      occupied.push(position);
     });
 
     setPositions(randomPositions);

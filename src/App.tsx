@@ -1,19 +1,19 @@
 import '@/App.css'
-import usePreLoading from '@hooks/use-pre-loading'
+import useLoading from '@hooks/use-loading'
 import Loading from '@components/loading/loading'
 import Home from '@pages/home/home'
 import useDarkMode from '@hooks/use-dark-mode';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
-  const loading = usePreLoading();
-  useDarkMode();
+  const loading = useLoading();
+  const [isDarkMode, toggleDarkMode] = useDarkMode();
   return (
     <>
       {loading ? (
         <Loading />
       ) : (
-        <Home />
+        <Home isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       )}
       <Toaster />
     </>

@@ -9,30 +9,32 @@
   position: relative;
   z-index: 110;
   padding: 0.5rem;
+  text-align: center;
 }
 
 .tooltip {
-  min-width: 10rem;
   position: absolute;
-  background: rgba(107, 91, 91, 1);
-  padding: 0.5rem;
-  border-radius: 1rem;
-  color: wheat;
+  background: rgb(65, 55, 55);
+  padding: 0.5rem 1rem;
+  border-radius: .5rem;
+  color: grey;
   opacity: 0;
   top: -40px;
   visibility: hidden;
   transition: 0.5s ease-out;
   z-index: 3;
   transform: translate(-50%);
+  white-space: nowrap;
 }
+
 .tooltip::after {
   content: '';
   position: absolute;
   left: 50%;
   bottom: -7px;
   box-sizing: content-box;
-  border-left: 15px solid rgba(107, 91, 91, 1);
-  border-bottom: 15px solid rgba(107, 91, 91, 1);
+  border-left: 15px solid rgb(65, 55, 55);
+  border-bottom: 15px solid rgb(65, 55, 55);
   transform: rotateZ(-45deg);
 }
 

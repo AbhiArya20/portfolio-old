@@ -27,7 +27,6 @@ const ParticlesContainer = () => {
           },
           onHover: {
             enable: true,
-            mode: "",
           },
         },
         modes: {

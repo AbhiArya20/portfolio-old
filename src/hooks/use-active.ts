@@ -1,34 +1,59 @@
 import { useEffect, useState } from 'react';
 
-const getActive = (path) => {
-  switch (path) {
-    case '':
+const getActive = (hash: string) => {
+  switch (hash) {
+    case '#home':
       return 0;
-    case 'portfolio':
+    case '#project':
       return 1;
-    case 'blog':
+    case '#contact':
       return 2;
-    case 'about-me':
-      return 3;
-    case 'contact':
-      return 4;
     default:
-      return undefined;
+      return 0;
   }
 };
 
+
 export default function useActive() {
-  const [path, setPath] = useState(() => window.location.pathname.split('/')[1]);
+  const [active, setActive] = useState(getActive(window.location.hash));
 
   useEffect(() => {
-    const handlePopState = () => {
-      setPath(window.location.pathname.split('/')[1]);
+    const handleHashChange = () => {
+      setActive(getActive(window.location.hash));
     };
-
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const active = getActive(path);
-  return { active, path };
+  useEffect(() => {
+    const sections = ['home', 'project', 'contact'];
+
+    const observers: IntersectionObserver[] = [];
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            const newHash = `#${id}`;
+            if (window.location.hash !== newHash) {
+              history.replaceState(null, '', newHash);
+            }
+          }
+        },
+        { threshold: 1 }
+      );
+
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    };
+  }, []);
+
+
+  return { active };
 }

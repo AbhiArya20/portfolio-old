@@ -1,43 +1,22 @@
-import  { useEffect, useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { SiLeetcode } from 'react-icons/si';
+import { useEffect, useState } from 'react';
+import { FaGithub } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
-import styles from '@/components/first-section/first-section.module.css';
+import styles from '@/components/hero-section/hero-section.module.css';
 
 const items = ['Performance', 'Scalability', 'Security', 'Latest Tech', 'Best UI', 'Modern UX'];
 
 const socialMedias = [
   {
-    link: 'https://leetcode.com/u/aky8507049610/',
-    Icon: SiLeetcode,
-    bgColor: 'white',
-    iconColor: 'text-orange-500'
-  },
-  {
-    link: 'https://www.linkedin.com/in/abhyarya/',
-    Icon: FaLinkedin,
-    bgColor: 'var(--color-primary)'
-  },
-  {
-    link: 'https://twitter.com/aky8507049610', 
+    link: 'https://twitter.com/abhiarya200',
     Icon: FaXTwitter,
-    bgColor: 'black'
   },
   {
-    link: 'https://github.com/AbhyArya',
+    link: 'https://github.com/abhiarya20',
     Icon: FaGithub,
-    bgColor: 'black'
   }
 ];
 
 function TextSegment() {
-  // const navigate = useNavigate();
-  // const goto = (path) => {
-  //   console.log(path);
-  //   navigate(path);
-  // };
-
   const [currentIdx, setCurrentIdx] = useState(0);
   const [currentText, setCurrentText] = useState([...items[currentIdx]]);
   const [width, setWidth] = useState(100);
@@ -61,10 +40,8 @@ function TextSegment() {
   return (
     <div>
       <h1>I'm a Web & Software Developer from India.</h1>
- 
       <div className={styles.animatedTextWrapper}>
         <h1>Currently making softwares having</h1>
-      
         <div className={styles.animatedTextInnerWrapper}>
           <span className={styles.typedOut} style={{ width: `${width}%` }}>
             {currentText}
@@ -72,22 +49,26 @@ function TextSegment() {
         </div>
       </div>
       <div className={styles.btnWrapper}>
-        <div 
-        // onClick={() => goto('/contact')} 
-        className={styles.hireMe}>
+        <a
+          href='https://x.com/abhiarya200'
+          className={styles.hireMe}
+          target='__blank'
+        >
           Hire Me
-        </div>
-        <div 
-        // onClick={() => goto('/resumes')} 
-        className={styles.resumes}>
+        </a>
+        <a
+        // TODO: add resume link
+        href='https://x.com/abhiarya200'
+          className={styles.resumes}
+          target='__blank'>
           Resume
-        </div>
+        </a>
       </div>
       <div className={styles.socialWrapper}>
-        {socialMedias.map(({ link, Icon, bgColor, iconColor }) => (
-          <a key={link} href={link} target='__blank' style={{ '--color': bgColor }}>
+        {socialMedias.map(({ link, Icon }) => (
+          <a key={link} href={link} target='__blank'>
             <div className={styles.socialMedia}>
-              <Icon className={`${iconColor} text-base`} />
+              <Icon />
             </div>
           </a>
         ))}
