@@ -56,7 +56,7 @@ export const projects: ProjectData[] = [
     github: 'https://github.com/AbhiArya20/camera-gallery',
   },
   {
-    title: "Camera Gallery",
+    title: "Excel",
     description: "Basic spreadsheet with formula cycle detection using depth first search (DFS).",
     link: 'https://excel.abhiarya.in',
     github: 'https://github.com/AbhiArya20/excel',
